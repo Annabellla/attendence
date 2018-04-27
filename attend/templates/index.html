@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>人脸识别考勤管理系统</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+	<script src="{% static 'js/jquery.webcam.min.js' %}"></script>
+</head>
+<body>
+	<div id="head">
+		<div>
+			<h6>{{ user.addr }}</h6>
+		</div>
+		<div>
+			<h1>人脸识别考勤系统</h1>
+		</div>
+	</div>
+	<div id="content">
+		<div id="left">
+			<div id="video"></div>
+		</div>
+		<div id="right">
+			<div id="result">
+				<div id="info_wrap">
+					<div id="cont">
+						<!--<h2>服务器异常请重试!</h2>-->
+						<!--<img src="images/face.jpg" width="120" height="160" class="photo"/>
+						<h3>张三丰<br>打卡成功!</h3>-->
+					</div>
+					<canvas width="420" height="250"></canvas>
+				</div>
+				<div id="time_wrap">
+					<img src="{% static 'images/0.png' %}" class="time">
+					<img src="{% static 'images/0.png' %}" class="time">
+					<span>：</span>
+					<img src="{% static 'images/0.png' %}" class="time">
+					<img src="{% static 'images/0.png' %}" class="time">
+					<span>：</span>
+					<img src="{% static 'images/0.png' %}" class="time">
+					<img src="{% static 'images/0.png' %}" class="time" >
+				</div>
+			</div>
+		</div>
+		<div id="btn">
+			<button id="clock">点击打卡</button>
+		</div>
+	</div>
+	<div id="foot">
+		<!--<h6>四川智捷天成科技有限公司版权所有</h6>-->
+		<input type="text" value="{{user.aid}}" id="hideInfo">
+	</div>
+<script>
+	var time_wrap = $('#time_wrap');
+	var info_wrap = $('#info_wrap');
+
+	/*拍照定义*/
+	var w = 420, h = 250;                                       //摄像头配置,创建canvas
+	var pos = 0, ctx = null, saveCB, image = [];
+	var canvas = document.getElementsByTagName("canvas")[0];
+	ctx = canvas.getContext("2d");
+	image = ctx.getImageData(0, 0, w, h);
+	$("#video").webcam({
+		width: w,
+		height: h,
+		mode: "callback",
+		swffile: "{% static 'js/jscam_420250.swf' %}",
+		onSave: function(data){
+			var col = data.split(";");
+			var img = image;
+			for(var i = 0; i < w; i++) {
+				var tmp = parseInt(col[i]);
+				img.data[pos + 0] = (tmp >> 16) & 0xff;
+				img.data[pos + 1] = (tmp >> 8) & 0xff;
+				img.data[pos + 2] = tmp & 0xff;
+				img.data[pos + 3] = 0xff;
+				pos+= 4;
+			}
+			if (pos >= 4 * w * h) {
+				ctx.putImageData(img,0,0);
+				pos = 0;
+				Imagedata=canvas.toDataURL().substring(22);
+			}
+		},
+		onCapture: function () {
+			webcam.save();
+		}
+	});
+	/*拍照定义*/
+
+	/*定义获取当前时间*/
+	 function getCurentTime(){
+        var now = new Date();
+        var year = now.getFullYear();       //年
+        var month = now.getMonth() + 1;     //月
+        var day = now.getDate();            //日
+        var hh = now.getHours();            //时
+        var mm = now.getMinutes();          //分
+        var ss = now.getSeconds();           //秒
+        var clock = year + "-";
+
+        if(month < 10)
+            clock += "0";
+
+        clock += month + "-";
+
+        if(day < 10)
+            clock += "0";
+
+        clock += day + " ";
+
+        if(hh < 10)
+            clock += "0";
+
+        clock += hh + ":";
+        if (mm < 10) clock += '0';
+        clock += mm + ":";
+
+        if (ss < 10) clock += '0';
+        clock += ss;
+        return(clock);
+	}
+	/*定义获取当前时间*/
+
+  	var t;
+	/*点击拍照*/
+	$("#clock").click(function(){
+		var time = getCurentTime();
+		var aid = $('#hideInfo').val();
+		var photo = canvas.toDataURL("image/jpg");
+		var clock=$(this);
+		var result=$('#result');
+
+		time_wrap.hide();
+		info_wrap.show();
+		$('#cont').html('');
+		$('canvas').show();
+
+		webcam.capture();
+		clock.attr('disabled','disabled').html('正在处理...');
+		clock.css({'background':'#999'});
+
+		$.ajax({
+			url:"/attend/ajax/img",
+			type: "POST",
+			dataType: "json",
+			async:false,
+			data:{
+				aid:aid,
+				photo:photo,
+				time:time
+			},
+			success: function (data) {
+				$('canvas').hide();
+				var text='';
+				if(data.status=="1"){
+					text = '<img src="'+data.pic+'" width="120" height="160" class="photo"/><h3>'+data.name+'<br>打卡成功!</h3>'
+					if(!!window.ActiveXObject || "ActiveXObject" in window){
+						audioIE(data.name);
+					}else{
+						audio(data.name);
+					}
+				}else if(data.status=="0"){
+					text = '<h2>人脸识别失败!</h2>'
+				}else if(data.status=="2"){
+					text = '<h2>请将正脸放至摄像头!</h2>'
+				}else{
+					text = '<h2>服务器异常请重试1!</h2>'
+				}
+
+				$('#cont').html(text);
+				clock.removeAttr("disabled").css('background','#2e6da4').html('点击打卡');
+				clearTimeout(t);
+				t=setTimeout(function hide() {
+					time_wrap.show();
+					info_wrap.hide()
+				}, 10000);
+			},
+			error: function () {
+				$('canvas').hide();
+				$('#cont').html('<h2>服务器异常请重试2!</h2>');
+				clock.removeAttr("disabled").css('background','#2e6da4').html('点击打卡');
+				clearTimeout(t);
+				t=setTimeout(function hide() {
+					time_wrap.show();
+					info_wrap.hide()
+				}, 10000);
+			}
+		})
+	});
+	/*点击拍照*/
+
+
+	/*定义动态时间*/
+	window.onload=function(){
+		var  aImg = document.getElementById('time_wrap').getElementsByTagName("img");
+		function toDob(n){
+			if(n<10){
+				return '0'+n;
+			}
+			else{
+				return ''+n;
+			}
+		}
+		function tick(){
+			var oDate=new Date();
+			var str=toDob(oDate.getHours())+toDob(oDate.getMinutes())+toDob(oDate.getSeconds());
+			for(var i=0;i<aImg.length;i++){
+				aImg[i].src="/static/images/"+str.charAt(i)+".png";
+			}
+		}
+		setInterval(tick,1000);
+		tick();
+	};
+
+	//迎宾词
+	function audio(names){
+		var len=$('audio').length;
+		if(len==0){
+			var tex="<audio onended=\"$(this).remove();var le=$('audio').length;if(le!=0){document.getElementsByTagName('audio')[0].play();}\" src=\"http://tts.baidu.com/text2audio?per=1&lan=zh&ie=UTF-8&spd=3&text="+ names +"打卡成功\" autoplay=true ></audio>";
+			$('body').append(tex);
+		}else{
+			var tex="<audio onended=\"$(this).remove();var le=$('audio').length;if(le!=0){document.getElementsByTagName('audio')[0].play();}\" src=\"http://tts.baidu.com/text2audio?per=1&lan=zh&ie=UTF-8&spd=3&text=欢迎"+ names +"打卡成功\"></audio>";
+			$('body').append(tex);
+		}
+	}
+
+	function audioIE(names){
+		var voiceObj = new ActiveXObject("Sapi.SpVoice");
+		voiceObj.Rate=-3;
+		voiceObj.Volume=100;
+		voiceObj.Speak(names+"打卡成功");
+	}
+
+</script>
+</body>
+</html>

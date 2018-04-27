@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;}
+body{background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:"Microsoft YaHei","宋体","Arial Narrow";}
+
+ul,ol{list-style-type:none;}
+select,input,img,select{vertical-align:middle;}
+
+a{text-decoration:none;}
+a:link{color:#009;}
+a:visited{color:#800080;}
+a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+
+
+body{background-image: url(../images/login_bg.png);background-attachment:fixed;background-repeat:no-repeat;background-size:100% 100%;overflow: hidden}
+#head{width: 100%;padding-top: 60px;}
+#head h1{font-size:4em;color: white;letter-spacing: 5px;margin:0 auto;background: url(../images/logo.png) no-repeat;height: 100px;padding-left: 120px;line-height: 80px;width: 600px;}
+#content{background: url(../images/content_bg.png) no-repeat;width: 1200px;height:720px;margin: 0 auto;}
+#login-wrap{background: url(../images/login_wrap.png) no-repeat;width:760px;height:380px;margin: 0 auto;}
+#login{width: 46%;margin: 0 auto}
+#login h2{font-size: 24px;color: white;text-shadow: 5px 5px 5px #000;padding-top: 20px;text-align: center;letter-spacing: 5px;}
+#hideInfo{display:none}
+form div{margin-top: 20px;}
+.input label{display:inline-block;width: 20%;line-height:30px;font-size: 16px;color: #a1daf9}
+.input input{width: 70%;height:28px;border-radius: 5px;padding-left: 5px;font-size: 14px;}
+form input[type=submit]{background: url(../images/login_btn.png) no-repeat;width: 80px;height: 36px;border: none;color: white;font-size: 16px;display: block;margin: 0 auto;margin-top: 26px;}
+#footer{clear:both;width: 100%;height:40px;text-align: center;position: fixed;bottom: 0;font-size: 16px;color: white}

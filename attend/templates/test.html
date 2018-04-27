@@ -1,0 +1,77 @@
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from dwebsocket import require_websocket
+from django.http import HttpResponse, HttpResponseRedirect
+import threading
+import time
+import json
+import base64
+import os
+from . import  models
+
+
+# 页面
+def login(request):
+    return render(request,'login.html')
+
+
+#@login_required
+def index(request):
+    return  render(request,'index.html')
+
+
+def members(request):
+    return render(request,'members.html')
+
+def record(request):
+    return render(request,'record.html')
+
+def setting(request):
+    return render(request,'setting.html')
+
+def department(request):
+    return render(request,'department.html')
+
+def report(request):
+    return render(request,'report.html')
+
+def rule(request):
+    return render(request,'rule.html')
+
+def test(request):
+    return render(request,'test.html')
+
+# 方法
+def doLogin(request):
+    account = request.POST.get('account','account')
+    password = request.POST.get('password','password')
+    user = models.Users.objects.filter(account=account)
+    if len(user) <= 0:
+        return render(request, 'login.html', {'error': '账号不存在！'})
+    elif password == user[0].password:
+        return  render(request,'index.html',{'user':user[0]})
+    else:
+        return render(request,'login.html',{'error':'密码错误！'})
+
+def settingData(request):
+
+   pass
+
+
+@require_websocket
+def socket(request):
+    message = request.websocket.wait()
+    request.websocket.send(message)
+
+
+def img(request):
+    base_photo = request.POST.get("photo")
+    #debase = base64.b64decode(base_photo)
+    #nparr = np.fromstring(debase, np.uint8)
+    #print (nparr)
+    data = {
+        "status": 0,
+        "pic": 1,
+        "name": 2,
+    }
+    #return HttpResponse(json.dumps(data), content_type="application/json")

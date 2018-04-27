@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>系统登录</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	{% load staticfiles %}
+	<link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+</head>
+<body>
+	<div id="head">
+		<h1>人脸识别考勤管理系统</h1>
+	</div>
+	<div id="content">
+		<div id="login-wrap">
+			<div id="login">
+				<h2>管理登录</h2>
+				<form action="{% url 'attend:doLogin' %}" method="post" >
+					{% csrf_token %}
+					<div class="input"><label>账&nbsp;&nbsp;&nbsp;号：</label><input type="text" name="account"></div>
+					<div class="input"><label>密&nbsp;&nbsp;&nbsp;码：</label><input type="password" name="password"></div>
+					<input type="submit" value="登录">
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		Copyright &copy; 2018  四川智捷天成科技有限公司版权所有
+		<input type="text" value="{{error}}" id="hideInfo">
+	</div>
+</body>
+<script>
+	$(function(){
+		var content=$('#content');
+		var wrap=$('#login-wrap');
+		var margin_wrap=(content.height()-wrap.height())/2;
+		content.css({'padding-top':margin_wrap});
+		var hideInfo = $('#hideInfo').val()
+
+		if(hideInfo!='')
+			alert(hideInfo)
+	})
+</script>
+</html>

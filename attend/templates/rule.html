@@ -1,0 +1,19 @@
+{% include "head.html" %}
+{% load staticfiles %}
+<link href="{% static 'css/lyz.calendar.css' %}" rel="stylesheet" type="text/css" />
+<style>
+	.calendar{margin-left:140px;margin-top:-40px;}
+</style>
+	<div>
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="obj.add()">添加</a>
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="obj.edit()">修改</a>
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="obj.save()" style="display: none" id="save">保存</a>
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo'" onclick="obj.redo()" style="display: none" id="redo">取消编辑</a>
+		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="obj.remove()">删除</a>
+	</div>
+	<div>
+		<input type="text"  style="height: 22px;padding-left: 5px;" name="key" class="textbox" placeholder="名称">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search()">查询</a>
+	</div>
+{% include "foot.html" %}
+<script type="text/javascript" src="{% static 'js/rule.js' %}"></script>

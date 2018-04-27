@@ -1,0 +1,22 @@
+{% include "head.html" %}
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/department.js' %}"></script>
+        <div>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="obj.add()">添加</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="obj.edit()">修改</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="obj.save()" style="display: none" id="save">保存</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo'" onclick="obj.redo()" style="display: none" id="redo">取消编辑</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="obj.remove()">删除</a>
+        </div>
+
+        <div>
+			<input type="text"  style="height: 22px;padding-left: 5px;" name="key" class="textbox" placeholder="部门">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search()">查询</a>
+		</div>
+
+        <div id="menu" class="easyui-menu" style="width: 120px; display: none;">
+            <div onclick="obj.add()" iconCls="icon-add">增加</div>
+            <div onclick="obj.edit()" iconCls="icon-edit">修改</div>
+            <div onclick="obj.remove()" iconCls="icon-remove">删除</div>
+        </div>
+{% include "foot.html" %}

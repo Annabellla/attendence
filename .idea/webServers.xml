@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8c9e68ff-c9b3-418c-b68c-07c5f2a2f98a" name="Zpy_face" url="http://192.168.1.213">
+        <fileTransfer host="192.168.1.213" port="21" rootFolder="/home">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

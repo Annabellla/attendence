@@ -1,0 +1,44 @@
+
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0;color: #fff}
+a{color:#2d374b;text-decoration:none}
+a:hover{color:#cd0200;text-decoration:underline}
+em{font-style:normal}
+li{list-style:none}
+img{border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+p{word-wrap:break-word}
+
+html{width: 100%;height: 100%;background-image: url(../images/body_bg.png);background-repeat: no-repeat;background-size: 100% 100%;overflow: hidden}
+
+#head{width: 100%;height: 120px;padding: 30px 0}
+#head div{padding-left: 20px;}
+#head div h6{font-size: 1.1em;padding-left: 26px}
+#head div h6:nth-child(1){background: url(../images/addr.png) no-repeat left;height: 27px;line-height: 27px;}
+#head h1{background: url(../images/logo.png) no-repeat left;height: 80px;padding-left: 100px;line-height: 80px;font-size: 3em;margin: 0 auto;width: 400px;margin-top:20px;}
+
+#content{height: 600px;width: 1024px;margin: 0 auto}
+#left,#right{ width:500px;background-image: url(../images/clock_bg.png) ;background-repeat:no-repeat;background-size:100% 100%;height: 326px ;margin-top: 100px;position: relative;}
+#left{float:left}
+#right{float:right;}
+
+#video,#result,canvas{ width: 420px;height: 250px; }
+#video,#result{ position: absolute;top: 38px;left: 42px; }
+#time_wrap{position: absolute;margin: 90px 50px;width:305px}
+#info_wrap{position: absolute;top: 0}
+
+#info_wrap .photo{border: 2px solid #fff;border-radius: 3px;margin-top:45px;margin-left:40px;float: left}
+#result h3{float: right;width:300px;text-align: center;font-size: 2em;letter-spacing: 1px;margin-top: 80px;}
+#result h2{font-size: 2.5em;width: 420px;text-align: center;margin-top: 100px;}
+#result span{font-size: 3em;margin-left:12px;}
+.time{line-height: 3em;margin-bottom: 18px;}
+#btn{width: 200px;height: 60px;margin: 0 auto;}
+#clock{width: 200px;height: 60px;background: #2e6da4;border: none;border-radius: 5px;color:#fff;margin-top: 60px;font-size:1.8em}
+#hideInfo{display:none}
+
+#foot{position: absolute;bottom: 0;width: 100%;height: 60px;}
+#foot h6{width: 100%;text-align: center;line-height: 60px;}
+#addr_id{display: none}
+
+@media screen and (max-width: 1024px){
+    #left,#right{ margin-top:60px }
+}

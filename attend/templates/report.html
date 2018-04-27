@@ -1,0 +1,18 @@
+{% include "head.html" %}
+{% load staticfiles %}
+	<div>
+		<input type="text"  style="height: 22px;padding-left: 5px;" name="key" class="textbox" placeholder="部门/地点">
+		月份：<input class="easyui-datebox" type="text" name="makedate" id="makedate" style="width:200px;" value="">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search()">查询</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="obj.print()">打印报表</a>
+	</div>
+	<ul id="status">
+		<li style="background: url({% static 'images/status_0.png' %}) no-repeat;">正常</li>
+		<li style="background: url({% static 'images/status_1.png' %}) no-repeat;">迟到</li>
+		<li style="background: url({% static 'images/status_2.png' %}) no-repeat;">早退</li>
+		<li style="background: url({% static 'images/status_3.png' %}) no-repeat;">缺卡</li>
+		<li style="background: url({% static 'images/status_4.png' %}) no-repeat;">缺勤</li>
+		<li style="background: url({% static 'images/status_5.png' %}) no-repeat;">休息</li>
+	</ul>
+<script type="text/javascript" src="{% static 'js/report.js' %}"></script>
+{% include "foot.html" %}

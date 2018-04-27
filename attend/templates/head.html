@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>人脸识别考勤管理系统</title>
+	{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/easyui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <script type="text/javascript" src="{% static 'easyui/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'easyui/jquery.easyui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'easyui/easyui-lang-zh_CN.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ajaxfileupload.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/lyz.calendar.min.js' %}" ></script>
+</head>
+<body>
+<div id="head">
+	<div id="title">
+		<h1>人脸识别考勤管理系统</h1>
+		<h2>Face Recognition And Attendance Management System</h2>
+	</div>
+	<div id="nav">
+		<ul>
+			<li><a href="#">admin</a></li>
+			<li><a href="#">退出登录</a></li>
+			<li><a href="#">帮助文档</a></li>
+		</ul>
+	</div>
+</div>
+<div id="banner">
+	<ul>
+		<li><a href="{% url 'attend:setting' %}">单位设置</a></li>
+		<li><a href="{% url 'attend:department' %}">部门设置</a></li>
+		<li><a href="{% url 'attend:members' %}">员工设置</a></li>
+		<li><a href="{% url 'attend:rule' %}">考勤规则</a></li>
+		<li><a href="{% url 'attend:record' %}">考勤日报</a></li>
+		<li><a href="{% url 'attend:report' %}">考勤月报</a></li>
+	</ul>
+</div>
+<div id="content">
+	<div id="tb">

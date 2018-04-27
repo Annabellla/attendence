@@ -1,0 +1,10 @@
+{% include "head.html" %}
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/record.js' %}"></script>
+	<div>
+		<input type="text"  style="height: 22px;padding-left: 5px;" name="key" class="textbox" placeholder="部门/地点">
+		时间：<input type="text" name="begin" class="easyui-datebox">
+		至：<input type="text" name="end" class="easyui-datebox">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search()">查询</a>
+	</div>
+{% include "foot.html" %}

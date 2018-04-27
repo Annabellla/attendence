@@ -1,0 +1,119 @@
+/*初始化*/
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+html {
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;}
+a{color:#2d374b;text-decoration:none}
+a:hover{color:#cd0200;text-decoration:underline}
+em{font-style:normal}
+li{list-style:none}
+img{border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+p{word-wrap:break-word}
+
+/*head*/
+#head{width: 100%;height: 90px;background-image: url(../images/head_bg.png);background-size: 100% 100%}
+#title{float: left;margin-left: 20px;margin-top: 5px;}
+#title h1{letter-spacing: 14px;font-size: 42px;color: whitesmoke}
+#title h2{letter-spacing: 1px;color: #a9d7ea;font-size: 18px;}
+#nav{background-image: url(../images/head_nav_bg.png);width: 336px;height: 34px;float: right;text-align: center;}
+#nav ul li{display: inline-block;border-right: 1px solid #999;padding-right: 5px;margin-top: 5px;}
+#nav ul li:nth-child(3){border: none}
+/*head*/
+
+
+/*banner*/
+#banner{background-image: url(../images/banner_bg.png);width: 100%;height: 30px;background-size: 100% 100%}
+#banner ul{margin-left: 20px;padding: 0;}
+#banner ul li{display: inline-block;width: 100px;line-height:30px;font-size: 16px;text-align: center}
+#banner ul li a{color: #cae8f9;font-weight: bold}
+#banner ul li a:hover{text-decoration: none}
+#banner ul li:hover{background-image: url(../images/current_page.png);text-decoration: none}
+/*banner*/
+
+
+#content{background:url(../images/sysbody_bg.png) repeat-x;padding:10px ;background-size: 100% 100%;overflow-y: scroll;overflow-x:hidden;clear: both;}
+#clear{width: 100%;height:30px;clear: both}
+.regular{color: green}
+.loss{color: red;}
+.do{margin: 50px;background-position:left;background-repeat:no-repeat;padding-left: 18px;}
+input{padding: 5px;}
+
+/*foot*/
+#foot{background-image: url(../images/foot_bg.png) ;background-size:100% 100%;width: 100%;height: 36px;position: fixed;bottom: 0;text-align: center;}
+#foot ul li{display: inline-block;border-right: 1px solid #333;padding-right: 5px;margin-top: 10px;color: #333;}
+#foot ul li:nth-child(2){border: none}
+/*foot*/
+
+/*查看大图样式*/
+.center-block, .carrousel, .carrousel .wrapper {margin: auto;position: absolute;top: 0; bottom: 0;left: 0;right: 0;}
+.carrousel {position: fixed;background-color: rgba(10, 10, 10, 0.65);display: none;width: 100%;height: 100%;}
+.carrousel .wrapper {width:490px;height:330px;overflow: hidden;border: none;padding: 0;}
+.carrousel .wrapper iframe{position: absolute; width:92%; height: 92%; border-radius: 10px;background: #fff;padding: 10px 12px;}
+.carrousel .wrapper img{position: absolute;top: 10px;left: 13px;}
+.carrousel .wrapper:active{border: none}
+.close {font-size: 40px!important;color:#FFFFFF!important;cursor: pointer;position: absolute;top: 4px;right: 8px;opacity: 0.9!important;}
+.close_btn{position: absolute;right:20px;top:20px;color:red;font-size: 40px;cursor: default;font-weight: bold}
+
+
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    display: none; z-index: 99;
+    overflow: hidden;
+}
+.mess {
+    position: absolute;
+    display: none;
+    width: 460px;
+    height:260px;
+    border-radius: 10px;
+    background:white;
+    text-align: center;
+    z-index: 101;
+}
+.mess #p1{
+    display: block;width:460px;
+}
+.mess .btn1{
+    width: 90px;
+    height: 38px;
+    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    background: #00c3f5;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+.mess .btn2{
+    width: 90px;
+    height: 38px;
+    font-family:  "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    background: #ccc;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    margin-left: 20px;
+}
+#p3{
+    float: right;
+    margin: 10px;
+    font-size: 20px;
+    color: #666666;
+    cursor: default;
+}
+#p1 input{ border-radius:5px;height:24px;display:block}
+#dateV{ width:380px ;margin:30px 0 10px 30px;;padding:7px 10px;border:1px solid #ccc; }
+#chooseDate{ width:170px ; padding:7px 10px;border:1px solid #ccc;margin:0 0 40px 140px}
+
+#status{margin: 10px;display: block}
+#status li{padding-left: 20px;float: left;margin: 10px;font-size:15px;}
